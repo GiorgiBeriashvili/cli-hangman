@@ -12,7 +12,7 @@ Status](https://deps.rs/crate/cli-hangman/0.1.0/status.svg)](https://deps.rs/cra
 
 ## Description
 
-![Logo](https://raw.githubusercontent.com/GiorgiBeriashvili/cli-hangman/master/resources/logo.png)
+![Logo](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/resources/logo.png)
 
 Command-line interface rendition of hangman.
 
