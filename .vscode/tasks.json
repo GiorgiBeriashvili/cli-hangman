@@ -126,6 +126,6 @@
             "problemMatcher": [
                 "$rustc"
             ]
-        },
+        }
     ]
 }
