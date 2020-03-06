@@ -26,7 +26,6 @@ Here is the basic usage scenario of the application:
 # Linux/macOS
 cli-hangman
 
-
 # Windows
 cli-hangman.exe
 ```
