@@ -1,0 +1,131 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Audit",
+            "type": "shell",
+            "command": "cargo audit",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cargo build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Check",
+            "type": "shell",
+            "command": "cargo check",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "cargo clean",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Doc",
+            "type": "shell",
+            "command": "cargo doc",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Default",
+            "type": "shell",
+            "command": "cargo run -- -d",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Fix",
+            "type": "shell",
+            "command": "cargo fix",
+            "args": [
+                "--allow-dirty",
+                "--allow-staged"
+            ],
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Format",
+            "type": "shell",
+            "command": "cargo fmt",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Help (concise)",
+            "type": "shell",
+            "command": "cargo run -- -h",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Help (verbose)",
+            "type": "shell",
+            "command": "cargo run -- --help",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Lint",
+            "type": "shell",
+            "command": "cargo clippy",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "cargo run",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Test",
+            "type": "shell",
+            "command": "cargo test",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "Version",
+            "type": "shell",
+            "command": "cargo run -- --version",
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+    ]
+}
