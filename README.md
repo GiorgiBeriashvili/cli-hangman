@@ -9,6 +9,7 @@
 Status](https://deps.rs/crate/cli-hangman/0.1.0/status.svg)](https://deps.rs/crate/cli-hangman/0.1.0
 "Project's dependency status")
 [![Contributors](https://img.shields.io/github/contributors/GiorgiBeriashvili/cli-hangman.svg)](https://github.com/GiorgiBeriashvili/cli-hangman/graphs/contributors)
+[![Workflow](https://github.com/GiorgiBeriashvili/cli-hangman/workflows/.github/workflows/rust.yml/badge.svg)](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/.github/workflows/rust.yml)
 
 ## Description
 
