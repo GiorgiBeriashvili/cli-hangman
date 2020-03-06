@@ -8,7 +8,7 @@ Here you will find some guidelines on how to contribute. Feel free to propose ch
 
 Always try your best to make a positive impact on this project and its community. By participating, you are expected to uphold the [Code of Conduct](CODE_OF_CONDUCT.md). Please report any unacceptable behavior to giorgi.beriashvili@outlook.com.
 
-## How Can I Contribute?
+## Contributing Guides
 
 First time contributing? You can learn more about contributing to open source projects through GitHub's [wonderful open source guides](https://opensource.guide/how-to-contribute/).
 
