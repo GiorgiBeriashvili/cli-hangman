@@ -1,0 +1,5 @@
+Constants(
+    MAXIMUM_COLUMN_WIDTH: 128,
+    MAXIMUM_PHASE: 6,
+    SECONDS_ASLEEP: 1
+)

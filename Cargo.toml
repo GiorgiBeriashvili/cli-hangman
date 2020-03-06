@@ -3,7 +3,38 @@ name = "cli-hangman"
 version = "0.1.0"
 authors = ["Giorgi Beriashvili <giorgi.beriashvili@outlook.com>"]
 edition = "2018"
+description = "Command-line interface rendition of hangman."
+documentation = "https://docs.rs/cli-hangman"
+homepage = "https://github.com/GiorgiBeriashvili/cli-hangman"
+repository = "https://github.com/GiorgiBeriashvili/cli-hangman"
+readme = "README.md"
+keywords = ["cli", "game"]
+categories = ["command-line-utilities", "games"]
+license = "Apache-2.0 OR MIT"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
+chrono = "0.4.10"
+clap = { git = "https://github.com/clap-rs/clap/" }
+crossterm = "0.16.0"
+dialoguer = "0.5.0"
+dirs = "2.0.2"
+fern = "0.5.9"
+log = "0.4.8"
+rand = "0.7.3"
+ron = "0.5.1"
+serde = "1.0.104"
+serde_json = "1.0.48"
+sm = "0.9.0"
+term-table = "1.2.0"
+toml = "0.5.6"
+
+[[bin]]
+name = "cli-hangman"
+path = "src/main.rs"
+
+[lib]
+name = "core"
+path = "src/core.rs"

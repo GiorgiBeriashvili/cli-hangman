@@ -1,0 +1,32 @@
+Gallows(
+    phases: [
+        (
+            lives: 6,
+            depiction: "\n_________\n|/      |\n|\n|\n|\n|\n|___\n",
+        ),
+                (
+            lives: 5,
+            depiction: "\n_________\n|/      |\n|       O\n|\n|\n|\n|___\n",
+        ),
+                (
+            lives: 4,
+            depiction: "\n_________\n|/      |\n|       O\n|       |\n|\n|\n|___\n",
+        ),
+                (
+            lives: 3,
+            depiction: "\n_________\n|/      |\n|       O\n|      /|\n|\n|\n|___\n",
+        ),
+                ( 
+            lives: 2,
+            depiction: "\n_________\n|/      |\n|       O\n|      /|\\\n|\n|\n|___\n",
+        ),
+                (
+            lives: 1,
+            depiction: "\n_________\n|/      |\n|       O\n|      /|\\\n|      /\n|\n|___\n",
+        ),
+        (
+            lives: 0,
+            depiction: "\n_________\n|/      |\n|       O\n|      /|\\\n|      / \\\n|\n|___\n",
+        ),
+    ],
+)
