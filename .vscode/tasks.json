@@ -48,14 +48,6 @@
             ]
         },
         {
-            "label": "Default",
-            "type": "shell",
-            "command": "cargo run -- -d",
-            "problemMatcher": [
-                "$rustc"
-            ]
-        },
-        {
             "label": "Fix",
             "type": "shell",
             "command": "cargo fix",
