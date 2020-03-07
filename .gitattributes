@@ -1,5 +1,6 @@
+src/data/lexicon.ron filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 * text=auto eol=lf
 *.{cmd,[cC][mM][dD]} text eol=crlf
 *.{bat,[bB][aA][tT]} text eol=crlf
-src/data/lexicon.ron filter=lfs diff=lfs merge=lfs -text

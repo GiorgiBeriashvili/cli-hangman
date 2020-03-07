@@ -23,13 +23,10 @@ Command-line interface rendition of hangman.
 
 Here is the basic usage scenario of the application:
 
-```sh
-# Linux/macOS
-cli-hangman
+![Usage](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/resources/usage.gif)
 
-# Windows
-cli-hangman.exe
-```
+Works on Linux, macOS and Windows. Simply run the binary executable file and by
+default it will launch with all of the batteries included.
 
 ---
 
