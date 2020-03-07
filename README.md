@@ -63,5 +63,5 @@ All notable changes to this project will be documented in the [CHANGELOG.md](htt
 
 cli-hangman is licensed under either of the following, at your option:
 
-* Apache License, Version 2.0 ([LICENSE-APACHE](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/LICENSE-APACHE "Copy of the Apache license (version 2.0)"))
-* MIT License ([LICENSE-MIT](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/LICENSE-MIT "Copy of the MIT license"))
+- Apache License, Version 2.0 ([LICENSE-APACHE](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/LICENSE-APACHE "Copy of the Apache license (version 2.0)"))
+- MIT License ([LICENSE-MIT](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/LICENSE-MIT "Copy of the MIT license"))
