@@ -13,4 +13,5 @@ The project leverages multiple tools and resources:
   [asciicast2gif](https://github.com/asciinema/asciicast2gif) - as a recorder
   a converter for
   the usage demo of the application.
+- 📜 [cargo-about](https://github.com/EmbarkStudios/cargo-about) - as a Cargo plugin for generating a listing of all of the crates used by a root crate, and the terms under which they are licensed.
 - 🌌 [Milky Way](https://en.wikipedia.org/wiki/Milky_Way) - as a gracious host to our Solar System.
