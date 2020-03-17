@@ -17,17 +17,17 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-* **Added**
-  * The core systems of the game
-  * Additional, unnecessary functionalities, such as logging, CLI argument
+- **Added**
+  - The core systems of the game
+  - Additional, unnecessary functionalities, such as logging, CLI argument
     parsing, output styling, and so forth
 
 ---
 
 ## [v0.1.0] (2020-02-02)
 
-* **Added**
-  * Generated files by `cargo new <name>` command
+- **Added**
+  - Generated files by `cargo new <name>` command
 
 [Unreleased]: https://github.com/GiorgiBeriashvili/cli-hangman/compare/d5d9bf0acb5d5b03acd9b2010c688eb5f727b31c...HEAD
 [v0.1.0]: https://github.com/GiorgiBeriashvili/cli-hangman/commit/d5d9bf0acb5d5b03acd9b2010c688eb5f727b31c
