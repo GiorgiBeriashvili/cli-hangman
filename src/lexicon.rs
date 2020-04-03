@@ -24,7 +24,7 @@ pub struct Entry {
 }
 
 impl Lexicon {
-    pub fn new(path: &String) -> Self {
+    pub fn new(path: &str) -> Self {
         trace!("Creating an instance of Lexicon.");
 
         let path: PathBuf = PathBuf::from(&path);
