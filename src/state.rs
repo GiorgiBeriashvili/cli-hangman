@@ -11,8 +11,8 @@ pub enum State {
 
 impl State {
     pub fn evaluate(&self, condition: Condition, augment: bool) {
-        match self {
-            Self::Resolved => match condition {
+        if let Self::Resolved = self {
+            match condition {
                 Condition::Lost => {
                     println!(
                         "{}",
@@ -30,8 +30,7 @@ impl State {
                         )
                     );
                 }
-            },
-            _ => (),
+            }
         }
     }
 }

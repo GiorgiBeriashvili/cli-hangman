@@ -179,9 +179,9 @@ impl Game {
             configuration_file.read_to_string(&mut buffer).unwrap();
 
             let configuration: Configuration = match self.settings.extension.as_str() {
-                "json" => serde_json::de::from_str(&mut buffer).unwrap(),
-                "ron" => ron::de::from_str(&mut buffer).unwrap(),
-                "toml" => toml::de::from_str(&mut buffer).unwrap(),
+                "json" => serde_json::de::from_str(&buffer).unwrap(),
+                "ron" => ron::de::from_str(&buffer).unwrap(),
+                "toml" => toml::de::from_str(&buffer).unwrap(),
                 _ => {
                     error!("Failed to deserialize the lexicon.");
 
@@ -569,7 +569,7 @@ impl Display for Game {
         table.add_row(Row::new(vec![
             TableCell::new_with_alignment("Lives", 1, Alignment::Center),
             TableCell::new_with_alignment(
-                self.constants.MAXIMUM_PHASE - &self.phase,
+                self.constants.MAXIMUM_PHASE - self.phase,
                 1,
                 Alignment::Center,
             ),
