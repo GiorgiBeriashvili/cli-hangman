@@ -16,12 +16,11 @@ use std::{
     fs::{create_dir_all, File, OpenOptions},
     io::{stdin, stdout, Read, Write},
     path::PathBuf,
-    process::Command,
-    thread,
+    process, thread,
     time::Duration,
 };
 
-mod commands;
+mod command;
 mod configuration;
 mod constants;
 mod cryptography;
@@ -33,7 +32,7 @@ mod state;
 mod stylizer;
 mod terminal;
 
-use commands::Commands;
+use command::Command;
 use configuration::Configuration;
 use constants::Constants;
 use cryptography::encrypt;
@@ -50,7 +49,6 @@ pub struct Game {
     pub definition: String,
     pub secret: String,
     pub constants: Constants,
-    pub commands: Vec<&'static str>,
     pub settings: Settings,
     pub gallows: Gallows,
     pub input: Input,
@@ -105,7 +103,6 @@ impl Game {
             definition: entry.definition.clone(),
             secret: encrypt(&word),
             constants: Constants::new(),
-            commands: Commands::new(),
             settings,
             gallows: Gallows::new(),
             input: Input::new(),
@@ -353,9 +350,32 @@ impl Game {
             self.input.discovered = false;
             self.input.validate();
 
-            if self.commands.contains(&self.input.depiction.as_str()) {
-                match self.input.depiction.as_str() {
-                    ":data" => {
+            if self.input.depiction.starts_with(":") {
+                trace!("Detecting a command...");
+
+                match Command::evaluate(self.input.depiction.as_str()) {
+                    Command::Continue => {
+                        info!("Invalid command detected.");
+
+                        println!(
+                            "{}",
+                            stylize(
+                                "\nInvalid command!",
+                                Attribute::Bold,
+                                Color::DarkYellow,
+                                self.settings.augment
+                            )
+                        );
+
+                        thread::sleep(Duration::from_secs(self.constants.SECONDS_ASLEEP));
+
+                        self.render();
+
+                        continue;
+                    }
+                    Command::Data => {
+                        info!("Executing the :data command.");
+
                         terminal::clear().unwrap();
 
                         println!("{}", &self);
@@ -364,18 +384,22 @@ impl Game {
 
                         continue;
                     }
-                    ":help" => {
+                    Command::Help => {
+                        info!("Executing the :help command.");
+
                         terminal::clear().unwrap();
 
-                        let output =
-                            match Command::new(env!("CARGO_PKG_NAME")).args(&["-h"]).output() {
-                                Ok(output) => output,
-                                Err(error) => {
-                                    error!("{}", error);
+                        let output = match process::Command::new(env!("CARGO_PKG_NAME"))
+                            .args(&["-h"])
+                            .output()
+                        {
+                            Ok(output) => output,
+                            Err(error) => {
+                                error!("{}", error);
 
-                                    std::process::exit(1);
-                                }
-                            };
+                                std::process::exit(1);
+                            }
+                        };
 
                         std::io::stdout().write_all(&output.stdout).unwrap();
 
@@ -383,7 +407,32 @@ impl Game {
 
                         continue;
                     }
-                    _ => (),
+                    Command::Restart => {
+                        info!("Executing the :restart command.");
+
+                        Self::new().run();
+
+                        break;
+                    }
+                    Command::Quit => {
+                        info!("Executing the :quit command.");
+
+                        println!(
+                            "{}",
+                            stylize(
+                                "\nQuitting...",
+                                Attribute::Bold,
+                                Color::Red,
+                                self.settings.augment
+                            )
+                        );
+
+                        self.state = State::Resolved;
+
+                        info!("Data:\n{}", &self);
+
+                        break;
+                    }
                 }
             } else if !self.input.valid {
                 println!(
@@ -397,6 +446,8 @@ impl Game {
                 );
 
                 thread::sleep(Duration::from_secs(self.constants.SECONDS_ASLEEP));
+
+                self.render();
 
                 continue;
             }
@@ -513,7 +564,7 @@ impl Game {
                 if retry(self.settings.augment) {
                     info!("Restarting the game...");
 
-                    Game::new().run();
+                    Self::new().run();
                 }
 
                 break;
