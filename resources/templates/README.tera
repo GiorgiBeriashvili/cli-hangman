@@ -5,7 +5,7 @@
 [![Crates.io](https://img.shields.io/crates/v/cli-hangman.svg)](https://crates.io/crates/cli-hangman "Project's crates.io page")
 [![Docs.rs](https://docs.rs/cli-hangman/badge.svg)](https://docs.rs/crate/cli-hangman "Project's docs.rs page")
 [![Dependency
-Status](https://deps.rs/crate/cli-hangman/0.1.0/status.svg)](https://deps.rs/crate/cli-hangman/0.1.0)
+Status](https://deps.rs/crate/cli-hangman/{{ package_version }}/status.svg)](https://deps.rs/crate/cli-hangman/{{ package_version }})
 [![Rust Workflow](https://github.com/GiorgiBeriashvili/cli-hangman/workflows/Rust/badge.svg)](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/.github/workflows/rust.yml)
 
 ## Description
@@ -37,7 +37,7 @@ Rust), it's best to follow the [official installation
 steps](https://www.rust-lang.org/tools/install "Official guide to install
 Rust").
 
-It is preferred to build the project with Rust version 1.42.0 (b8cedc004 2020-03-09).
+It is preferred to build the project with Rust version {{ rustc_version }}.
 
 ```sh
 # Clone the repository
