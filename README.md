@@ -2,13 +2,11 @@
 
 [![LICENSE](https://img.shields.io/badge/License-MIT_or_Apache_2.0-green.svg)](https://github.com/GiorgiBeriashvili/cli-hangman#License
 "Project's LICENSE section")
-[![Tokei.rs](https://tokei.rs/b1/github/GiorgiBeriashvili/cli-hangman)](https://github.com/GiorgiBeriashvili/cli-hangman "Project's total lines of code")
 [![Crates.io](https://img.shields.io/crates/v/cli-hangman.svg)](https://crates.io/crates/cli-hangman "Project's crates.io page")
 [![Docs.rs](https://docs.rs/cli-hangman/badge.svg)](https://docs.rs/crate/cli-hangman "Project's docs.rs page")
 [![Dependency
 Status](https://deps.rs/crate/cli-hangman/0.1.0/status.svg)](https://deps.rs/crate/cli-hangman/0.1.0
 "Project's dependency status")
-[![Contributors](https://img.shields.io/github/contributors/GiorgiBeriashvili/cli-hangman.svg)](https://github.com/GiorgiBeriashvili/cli-hangman/graphs/contributors)
 [![Rust Workflow](https://github.com/GiorgiBeriashvili/cli-hangman/workflows/Rust/badge.svg)](https://github.com/GiorgiBeriashvili/cli-hangman/blob/master/.github/workflows/rust.yml)
 
 ## Description
@@ -40,7 +38,7 @@ Rust), it's best to follow the [official installation
 steps](https://www.rust-lang.org/tools/install "Official guide to install
 Rust").
 
-It is preferred to build the project with Rust version 1.41.1 (f3e1a954d 2020-02-24).
+It is preferred to build the project with Rust version 1.42.0 (b8cedc004 2020-03-09).
 
 ```sh
 # Clone the repository
