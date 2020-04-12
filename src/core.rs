@@ -43,6 +43,7 @@ use settings::Settings;
 use state::{Condition, State};
 use stylizer::stylize;
 
+#[derive(Default)]
 pub struct Game {
     pub lexicon_path: String,
     pub word: String,
@@ -350,7 +351,7 @@ impl Game {
             self.input.discovered = false;
             self.input.validate();
 
-            if self.input.depiction.starts_with(":") {
+            if self.input.depiction.starts_with(':') {
                 trace!("Detecting a command...");
 
                 match Command::evaluate(self.input.depiction.as_str()) {

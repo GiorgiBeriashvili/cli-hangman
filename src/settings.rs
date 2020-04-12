@@ -1,7 +1,7 @@
 use clap::{crate_authors, crate_description, crate_name, crate_version, Clap};
 use serde::{Deserialize, Serialize};
 
-#[derive(Clap, Debug, Serialize, Deserialize)]
+#[derive(Clap, Debug, Default, Serialize, Deserialize)]
 #[clap(about = crate_description!(), author = crate_authors!(), name = crate_name!(), version = crate_version!())]
 pub struct Settings {
     /// Augments the output (applies predefined style)

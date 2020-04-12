@@ -3,7 +3,7 @@ use dialoguer::Confirmation;
 
 use crate::stylizer::stylize;
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Input {
     pub depiction: String,
     pub discovered: bool,

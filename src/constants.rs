@@ -2,7 +2,7 @@
 use ron::de::from_str;
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Default, Deserialize)]
 pub struct Constants {
     pub MAXIMUM_COLUMN_WIDTH: usize,
     pub MAXIMUM_PHASE: usize,

@@ -9,6 +9,12 @@ pub enum State {
     Resolved,
 }
 
+impl Default for State {
+    fn default() -> Self {
+        Self::Initial
+    }
+}
+
 impl State {
     pub fn evaluate(&self, condition: Condition, augment: bool) {
         if let Self::Resolved = self {
