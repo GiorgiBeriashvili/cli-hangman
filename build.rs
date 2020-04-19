@@ -4,15 +4,13 @@ use tera::{Context, Tera};
 
 lazy_static! {
     static ref TEMPLATES: Tera = {
-        let tera = match Tera::new("resources/templates/**/*") {
+        match Tera::new("resources/templates/**/*") {
             Ok(tera) => tera,
             Err(error) => {
                 println!("Parsing error(s): {}", error);
                 ::std::process::exit(1);
             }
-        };
-
-        tera
+        }
     };
 }
 
