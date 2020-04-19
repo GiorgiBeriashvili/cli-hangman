@@ -14,7 +14,7 @@ use toml;
 use std::{
     fmt::{Display, Formatter, Result},
     fs::{create_dir_all, File, OpenOptions},
-    io::{stdin, stdout, Read, Write},
+    io::{stdin, stdout, BufRead, Read, Write},
     path::PathBuf,
     process, thread,
     time::Duration,
@@ -37,7 +37,8 @@ use configuration::Configuration;
 use constants::Constants;
 use cryptography::encrypt;
 use gallows::Gallows;
-use input::{retry, Input};
+use input::{prompt_restart, Input};
+use lazy_static::lazy_static;
 use lexicon::Lexicon;
 use settings::Settings;
 use state::{Condition, State};
@@ -58,39 +59,47 @@ pub struct Game {
     pub state: State,
 }
 
+lazy_static! {
+    static ref SETTINGS: Settings = Settings::parse();
+}
+
+lazy_static! {
+    static ref LEXICON_PATH: String = match SETTINGS.lexicon_path.clone() {
+        Some(lexicon_path) => lexicon_path,
+        None => {
+            let mut lexicon_path: PathBuf =
+                [dirs::config_dir().unwrap(), PathBuf::from(crate_name!())]
+                    .iter()
+                    .collect();
+
+            trace!("Set the lexicon path.");
+
+            match create_dir_all(&lexicon_path) {
+                Ok(()) => info!("Successfully created/verified the directories."),
+                Err(error) => error!("{}", error),
+            }
+
+            lexicon_path.push("lexicon");
+            lexicon_path.set_extension("ron");
+
+            lexicon_path.to_str().unwrap().to_string()
+        }
+    };
+}
+
+lazy_static! {
+    static ref LEXICON: Lexicon = Lexicon::new(&LEXICON_PATH);
+}
+
 impl Game {
     pub fn new() -> Self {
-        let settings = Settings::parse();
+        let settings = SETTINGS.clone();
 
         trace!("Parsed the settings.");
 
         Lexicon::generate();
 
-        let lexicon_path: String = match settings.lexicon_path.clone() {
-            Some(lexicon_path) => lexicon_path,
-            None => {
-                let mut lexicon_path: PathBuf =
-                    [dirs::config_dir().unwrap(), PathBuf::from(crate_name!())]
-                        .iter()
-                        .collect();
-
-                trace!("Set the lexicon path.");
-
-                match create_dir_all(&lexicon_path) {
-                    Ok(()) => info!("Successfully created/verified the directories."),
-                    Err(error) => error!("{}", error),
-                }
-
-                lexicon_path.push("lexicon");
-                lexicon_path.set_extension("ron");
-
-                lexicon_path.to_str().unwrap().to_string()
-            }
-        };
-
-        let lexicon = Lexicon::new(&lexicon_path);
-
-        let entry = lexicon.get_random_entry().unwrap();
+        let entry = LEXICON.get_random_entry().unwrap();
         let word = entry.word.to_lowercase().trim().to_string();
         let phase = settings.phase;
 
@@ -99,7 +108,7 @@ impl Game {
         trace!("Commencing game creation...");
 
         Self {
-            lexicon_path,
+            lexicon_path: LEXICON_PATH.clone(),
             word: word.clone(),
             definition: entry.definition.clone(),
             secret: encrypt(&word),
@@ -338,7 +347,7 @@ impl Game {
                 }
             };
 
-            match stdin().read_line(&mut buffer) {
+            match stdin().lock().read_line(&mut buffer) {
                 Ok(_) => (),
                 Err(error) => {
                     error!("Failed to read the line: {}", error);
@@ -355,6 +364,17 @@ impl Game {
                 trace!("Detecting a command...");
 
                 match Command::evaluate(self.input.depiction.as_str()) {
+                    Command::Augment => {
+                        info!("Executing the :augment command.");
+
+                        self.settings.augment = !self.settings.augment;
+
+                        terminal::clear().unwrap();
+
+                        self.render();
+
+                        continue;
+                    }
                     Command::Continue => {
                         info!("Invalid command detected.");
 
@@ -402,18 +422,11 @@ impl Game {
                             }
                         };
 
-                        std::io::stdout().write_all(&output.stdout).unwrap();
+                        stdout().write_all(&output.stdout).unwrap();
 
                         thread::sleep(Duration::from_secs(self.constants.SECONDS_ASLEEP));
 
                         continue;
-                    }
-                    Command::Restart => {
-                        info!("Executing the :restart command.");
-
-                        Self::new().run();
-
-                        break;
                     }
                     Command::Quit => {
                         info!("Executing the :quit command.");
@@ -433,6 +446,24 @@ impl Game {
                         info!("Data:\n{}", &self);
 
                         break;
+                    }
+                    Command::Restart => {
+                        info!("Executing the :restart command.");
+
+                        Self::new().run();
+
+                        break;
+                    }
+                    Command::Unveil => {
+                        info!("Executing the :unveil command.");
+
+                        self.settings.unveil = !self.settings.unveil;
+
+                        terminal::clear().unwrap();
+
+                        self.render();
+
+                        continue;
                     }
                 }
             } else if !self.input.valid {
@@ -488,7 +519,7 @@ impl Game {
 
                         info!("Data:\n{}", &self);
 
-                        if retry(self.settings.augment) {
+                        if prompt_restart(self.settings.augment) {
                             info!("Restarting the game...");
 
                             Game::new().run();
@@ -522,7 +553,7 @@ impl Game {
 
                 info!("Data:\n{}", &self);
 
-                if retry(self.settings.augment) {
+                if prompt_restart(self.settings.augment) {
                     info!("Restarting the game...");
 
                     Game::new().run();
@@ -562,7 +593,7 @@ impl Game {
 
                 info!("Data:\n{}", &self);
 
-                if retry(self.settings.augment) {
+                if prompt_restart(self.settings.augment) {
                     info!("Restarting the game...");
 
                     Self::new().run();
