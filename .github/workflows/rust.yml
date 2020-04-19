@@ -50,14 +50,14 @@ jobs:
         with:
           command: test
 
-  security_audit:
-    name: Perform a security audit check
+  audit_check:
+    name: Perform an audit check
     runs-on: ubuntu-latest
     steps:
       - name: Check-out the repository
         uses: actions/checkout@v1
 
-      - name: Perform an audit check
+      - name: Install and run Cargo Audit
         uses: actions-rs/audit-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
