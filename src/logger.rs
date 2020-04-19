@@ -1,6 +1,5 @@
 use chrono::Local;
 use clap::crate_name;
-use dirs;
 use fern::{log_file, Dispatch, InitError};
 use log::LevelFilter;
 use std::{fs::create_dir_all, path::PathBuf};
