@@ -1,16 +1,13 @@
 use clap::crate_name;
 use log::{debug, error, info, trace};
 use rand::seq::SliceRandom;
-use ron;
 use serde::{Deserialize, Serialize};
-use serde_json;
 use std::{
     ffi::OsStr,
     fs::{create_dir_all, File, OpenOptions},
     io::{Read, Write},
     path::PathBuf,
 };
-use toml;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Lexicon {

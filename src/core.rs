@@ -1,15 +1,11 @@
 use clap::{crate_name, Clap};
 use crossterm::style::{Attribute, Color};
-use dirs;
 use log::{debug, error, info, trace, warn};
-use ron;
-use serde_json;
 use term_table::{
     row::Row,
     table_cell::{Alignment, TableCell},
     Table, TableStyle,
 };
-use toml;
 
 use std::{
     fmt::{Display, Formatter, Result},
