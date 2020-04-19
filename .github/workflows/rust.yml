@@ -51,6 +51,7 @@ jobs:
           command: test
 
   security_audit:
+    name: Perform a security audit check
     runs-on: ubuntu-latest
     steps:
       - name: Check-out the repository
