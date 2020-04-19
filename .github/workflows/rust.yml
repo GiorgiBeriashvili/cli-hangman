@@ -8,7 +8,7 @@ on:
 
 jobs:
   continuous-integration:
-    name: Runs on ${{ matrix.os }}
+    name: Runs on ${{ matrix.os }} (${{ matrix. toolchain }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
